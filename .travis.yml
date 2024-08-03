@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true clarewan/docker-react npm run test
+
+deploy:
+  privider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "Docker-react-env"
+  bucket_name: "elasticbeanstalk-us-east-1-021891608155"
+  bucket_path: "docker-react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
